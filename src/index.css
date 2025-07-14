@@ -1,13 +1,48 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-dot bg-black text-white;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(#ffffff11 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  z-index: 0;
+  opacity: 0.02;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: radial-gradient(white 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+  opacity: 0.02;
+  animation: matrixPulse 6s infinite ease-in-out;
+}
+
+@keyframes matrixPulse {
+  0% {
+    background-size: 20px 20px;
+  }
+  100% {
+    background-size: 21px 21px;
+  }
+}
+
+@layer utilities {
+  .font-dot {
+    font-family: 'DotGothic16', monospace;
+  }
 }

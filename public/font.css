@@ -1,0 +1,5 @@
+@font-face {
+  font-family: 'Nothing Font (5x7)';
+  src: url('/nothing.woff2') format('woff2');
+  font-display: swap;
+}
