@@ -2,101 +2,225 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base */
-body {
-  background-color: #dddddd !important;
-  color: #000000 !important;
-  font-family: var(--font-inter);
+/* ─── Variables ─────────────────────────────────────────── */
+:root {
+  --bg:      #e8e8e2;
+  --ink:     #0a0a0a;
+  --muted:   #555550;
+  --white:   #fafaf7;
+  --border:  #0a0a0a;
+  --mono:    var(--font-mono, 'Space Mono', monospace);
+  --sans:    var(--font-sans, 'DM Sans', sans-serif);
 }
 
+/* ─── Base ───────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg) !important;
+  color: var(--ink) !important;
+  font-family: var(--sans);
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* Force light mode always */
 @media (prefers-color-scheme: dark) {
   html, body {
-    background-color: #dddddd !important;
-    color: #000000 !important;
+    background-color: var(--bg) !important;
+    color: var(--ink) !important;
   }
 }
 
-.hero-font {
-  color: black !important;
-  font-family: var(--font-gloria);
-}
-
-/* paper texture (very subtle) */
-body::before {
-  content: "";
+/* paper grain overlay */
+body::after {
+  content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(#00000008 1px, transparent 1px);
-  background-size: 12px 12px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.6;
+}
+
+/* dot grid texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(#00000010 1px, transparent 1px);
+  background-size: 24px 24px;
   z-index: -1;
+  pointer-events: none;
 }
 
-/* hand-drawn border */
-.sketch {
-  border: 1.5px solid #000;
-  position: relative;
-  border-radius: 6px;
+/* ─── Typography ─────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
 }
 
-.sketch::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border: 1px solid #000;
-  border-radius: 8px;
-  opacity: 0.5;
-  transform: translate(2px, 2px);
-}
-
-/* jitter hover */
-.sketch:hover {
-  transform: translate(-1px, 1px);
-}
-
-/* glitch but subtle */
-.glitch {
-  position: relative;
-}
-
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  opacity: 0.2;
-}
-
-.glitch::before {
-  transform: translate(1px, -1px);
-}
-
-.glitch::after {
-  transform: translate(-1px, 1px);
-}
-
-/* grid layout helper */
-.grid-sketch {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 16px;
-}
 a {
   color: inherit;
   text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-/* better spacing + density */
-h1, h2, h3 {
-  letter-spacing: -0.02em;
-}
-
-/* tighter cards */
+/* ─── Sketch / border ────────────────────────────────────── */
 .sketch {
-  border: 1.2px solid #000;
+  border: 1.2px solid var(--ink);
   border-radius: 4px;
-  background: #fff;
+  background: var(--white);
+  position: relative;
+}
+
+.sketch::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  opacity: 0.18;
+  transform: translate(2px, 2px);
+  pointer-events: none;
+}
+
+.sketch:hover {
+  transform: translate(-1px, 1px);
+  transition: transform 0.15s ease;
+}
+
+/* ─── Buttons ────────────────────────────────────────────── */
+.btn-primary {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.9rem 2rem;
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-outline {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.9rem 2rem;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* ─── Ticker ─────────────────────────────────────────────── */
+.ticker-track {
+  display: flex;
+  gap: 3rem;
+  animation: ticker 22s linear infinite;
+  white-space: nowrap;
+}
+
+/* ─── Project cards ──────────────────────────────────────── */
+.project-card {
+  padding: 2.5rem;
+  background: var(--white);
+  transition: background 0.25s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+
+.project-card:hover::before {
+  transform: translateY(0);
+}
+
+.project-card:hover .card-tag,
+.project-card:hover .card-title,
+.project-card:hover .card-desc,
+.project-card:hover .card-year,
+.project-card:hover .card-arrow {
+  color: var(--bg) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ─── Tag pill ───────────────────────────────────────────── */
+.tag-mono {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ─── Status dot ─────────────────────────────────────────── */
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* ─── Circuit SVG animation ──────────────────────────────── */
+.circuit-path {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: draw 2s forwards;
+}
+
+.circuit-path-2 { animation-delay: 0.4s; }
+.circuit-path-3 { animation-delay: 0.8s; }
+
+/* ─── Keyframes ──────────────────────────────────────────── */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+@keyframes draw {
+  from { stroke-dashoffset: 500; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
