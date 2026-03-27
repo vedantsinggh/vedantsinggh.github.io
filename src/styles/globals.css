@@ -224,3 +224,194 @@ a:hover {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
 }
+.project-prose {
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: var(--ink);
+}
+ 
+.project-prose h2 {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
+}
+ 
+.project-prose h3 {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 2rem 0 0.75rem;
+}
+ 
+.project-prose p {
+  margin-bottom: 1.4rem;
+  color: var(--muted);
+}
+ 
+.project-prose strong {
+  font-weight: 700;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.88em;
+  letter-spacing: 0.02em;
+}
+ 
+.project-prose em {
+  font-style: italic;
+  color: var(--ink);
+}
+ 
+.project-prose ul,
+.project-prose ol {
+  margin: 0 0 1.4rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+ 
+.project-prose ul li {
+  padding: 0.4rem 0 0.4rem 1.25rem;
+  position: relative;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+ 
+.project-prose ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  font-family: var(--mono);
+  color: rgba(0,0,0,0.25);
+  font-size: 0.8em;
+}
+ 
+.project-prose ol {
+  counter-reset: item;
+}
+ 
+.project-prose ol li {
+  padding: 0.4rem 0 0.4rem 2rem;
+  position: relative;
+  color: var(--muted);
+  counter-increment: item;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+ 
+.project-prose ol li::before {
+  content: counter(item, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: rgba(0,0,0,0.3);
+  top: 0.55rem;
+}
+ 
+.project-prose code {
+  font-family: var(--mono);
+  font-size: 0.8em;
+  background: rgba(0,0,0,0.06);
+  padding: 0.15em 0.45em;
+  border-radius: 2px;
+  color: var(--ink);
+}
+ 
+.project-prose pre {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 1.5rem 1.75rem;
+  margin: 1.75rem 0;
+  border-radius: 0;
+  overflow-x: auto;
+  border-left: 3px solid rgba(255,255,255,0.2);
+}
+ 
+.project-prose pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.78rem;
+  color: rgba(232,232,226,0.85);
+  line-height: 1.8;
+}
+ 
+.project-prose blockquote {
+  border-left: 2px solid var(--ink);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 1.75rem 0;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--muted);
+}
+ 
+.project-prose a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(0,0,0,0.3);
+  transition: text-decoration-color 0.2s;
+}
+ 
+.project-prose a:hover {
+  text-decoration-color: var(--ink);
+}
+ 
+.project-prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+ 
+/* Callout / note box */
+.project-prose .note {
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  margin: 1.75rem 0;
+  background: var(--white);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+ 
+.project-prose .note::before {
+  content: "NOTE //";
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  font-style: normal;
+}
+.project-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .project-layout {
+    grid-template-columns: 1fr minmax(0, 680px) 1fr;
+  }
+
+  .left-gutter {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 60px;
+    border-left: 1px solid var(--border);
+    border-top: none;
+    height: fit-content;
+  }
+}

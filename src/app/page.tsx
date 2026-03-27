@@ -85,7 +85,7 @@ function Nav() {
 
         {!compact && (
           <ul style={{ display: "flex", gap: "2rem", listStyle: "none" }}>
-            {["Work", "Lab", "About", "Contact"].map((item) => (
+            {["Projects", "Lab", "About", "Contact"].map((item) => (
               <li key={item}>
                 <Link
                   href={`/${item.toLowerCase()}`}
@@ -220,7 +220,7 @@ function Hero() {
             </span>
           </h1>
           <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "var(--muted)", maxWidth: "38ch" }}>
-            I build systems that operate at the edge — autonomous robots, embedded runtimes, and AI-driven control loops. From bare metal to intelligence.
+            I build systems that operate at the edge of autonomous robots, embedded runtimes, and AI-driven control loops. From bare metal to intelligence.
           </p>
         </div>
 
@@ -326,10 +326,10 @@ function FeaturedProject() {
               Active
             </span>
             <h2 style={{ fontFamily: "var(--mono)", fontSize: isMobile ? "2.2rem" : "3rem", fontWeight: 700, lineHeight: 1, letterSpacing: "-0.03em", marginBottom: "1.25rem" }}>
-              AGNI
+              AGNI — Autonomous Terrain-Aware Ground Vehicle
             </h2>
             <p style={{ fontSize: "0.9rem", color: "var(--muted)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
-              Autonomous navigation system for real-world terrain. Multi-modal sensor fusion, real-time path planning, and adaptive obstacle avoidance. Deployed on uneven outdoor surfaces at up to 4.2 m/s.
+				Autonomous ground vehicle engineered for GPS-denied environments using adaptive sensor fusion, terrain-aware control, and real-time perception. Designed for rugged, unstructured terrains with robust localization and dynamic obstacle avoidance.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "2rem" }}>
               {["C++", "ROS2", "SLAM", "LiDAR", "Kalman Filter"].map((t) => (
@@ -367,7 +367,7 @@ function FeaturedProject() {
               <text x="10"  y="65"  fontSize="8"  fill="var(--muted)" stroke="none">M/S TOP SPEED</text>
               <text x="170" y="50"  fontSize="24" fill="var(--ink)" stroke="none" fontWeight="700">12ms</text>
               <text x="170" y="65"  fontSize="8"  fill="var(--muted)" stroke="none">LOOP LATENCY</text>
-              <text x="10"  y="252" fontSize="8"  fill="var(--muted)" stroke="none">AGNI v2.4.1 — outdoor autonomous nav</text>
+              <text x="10"  y="252" fontSize="8"  fill="var(--muted)" stroke="none">AGNI v2.0.1 — outdoor autonomous nav</text>
             </g>
           </svg>
         </div>
@@ -378,10 +378,7 @@ function FeaturedProject() {
 
 // ─── PROJECTS GRID ────────────────────────────────────────────────────────────
 const FALLBACK_PROJECTS: Project[] = [
-  { slug: "osmium",    title: "Osmium OS",  tag: "OS / Kernel",     description: "Minimalist OS for resource-constrained servers. Preemptive scheduler, memory manager, and HAL.",         year: "2026" },
-  { slug: "neuron",    title: "NEURON",     tag: "AI / Inference",  description: "On-device inference engine. Quantized model execution on ARM Cortex-M with no external dependencies.", year: "2024" },
-  { slug: "flux-ctrl", title: "FLUX CTRL",  tag: "Embedded",        description: "PID control library with auto-tuning. Used in thermal management and motor speed regulation.",          year: "2023" },
-  { slug: "optic",     title: "OPTIC",      tag: "Computer Vision", description: "Real-time object detection pipeline optimised for low-power FPGA deployment. 30fps at 5W.",             year: "2023" },
+  { slug: "osmium",    title: "Osmium OS",  tag: "OS / Kernel",     description: "Minimalist OS for resource-constrained servers.",year: "2026" },
 ];
 
 function ProjectsGrid({ projects }: { projects: Project[] }) {
@@ -500,8 +497,6 @@ function AboutStrip() {
 // ─── BLOG PREVIEW ─────────────────────────────────────────────────────────────
 const BLOG_POSTS = [
   { date: "Mar 2025", title: "Why I rewrote the scheduler from scratch",  excerpt: "Priority inversion, priority inheritance, and why the simple solution was the right one." },
-  { date: "Jan 2025", title: "Kalman filters: an honest field guide",      excerpt: "What the textbooks don't tell you about numerical instability and real sensor noise." },
-  { date: "Nov 2024", title: "Debugging at 3am with a logic analyser",    excerpt: "The SPI clock was fine. The problem was something far more embarrassing." },
 ];
 
 function BlogPreview() {
