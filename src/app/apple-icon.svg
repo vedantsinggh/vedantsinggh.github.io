@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <!-- Outer Black Circle -->
+  <circle cx="50" cy="50" r="48" fill="#0A0A0A" />
+  
+  <!-- White Collar / Shirt Cutout -->
+  <path
+    d="M 50 18 L 36 26 C 34 26 32 28 32 30 L 28 54 C 28 70 38 82 50 84 C 62 82 72 70 72 54 L 68 30 C 68 28 66 26 64 26 Z"
+    fill="#FFFFFF"
+  />
+
+  <!-- Crisp Shirt Collar Folds -->
+  <path
+    d="M 50 20 L 36 38 L 44 42 L 50 36 Z"
+    fill="#FFFFFF"
+    stroke="#EDEDED"
+    stroke-width="0.75"
+  />
+  <path
+    d="M 50 20 L 64 38 L 56 42 L 50 36 Z"
+    fill="#FFFFFF"
+    stroke="#EDEDED"
+    stroke-width="0.75"
+  />
+
+  <!-- Crimson Red Silk Tie -->
+  <!-- Tie Knot -->
+  <path
+    d="M 45 42 L 55 42 L 53.5 48 L 46.5 48 Z"
+    fill="#E10600"
+  />
+  <!-- Tie Body -->
+  <path
+    d="M 46.5 48 L 53.5 48 L 56 75 L 50 83 L 44 75 Z"
+    fill="#E10600"
+  />
+
+  <!-- Subtle Rim Highlight -->
+  <circle
+    cx="50"
+    cy="50"
+    r="48"
+    fill="none"
+    stroke="#E10600"
+    stroke-width="1.5"
+    opacity="0.6"
+  />
+</svg>

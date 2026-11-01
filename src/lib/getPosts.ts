@@ -6,7 +6,15 @@ import html from "remark-html";
 
 const dir = path.join(process.cwd(), "src/content/blog");
 
-export function getAllPosts() {
+export interface PostData {
+  slug: string;
+  title: string;
+  description?: string;
+  date?: string;
+  contentHtml?: string;
+}
+
+export function getAllPosts(): PostData[] {
   const files = fs.readdirSync(dir);
 
   return files.map((file) => {
@@ -21,11 +29,12 @@ export function getAllPosts() {
       slug,
       title: data.title || "Untitled",
       description: data.description || "",
+      date: data.date || "2025",
     };
   });
 }
 
-export async function getPost(slug: string) {
+export async function getPost(slug: string): Promise<PostData> {
   if (!slug) throw new Error("Slug is undefined");
 
   const fullPath = path.join(dir, `${slug}.md`);
@@ -44,6 +53,7 @@ export async function getPost(slug: string) {
     slug,
     title: data.title || "Untitled",
     description: data.description || "",
+    date: data.date || "2025",
     contentHtml: processed.toString(),
   };
 }

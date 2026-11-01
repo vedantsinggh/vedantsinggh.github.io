@@ -1,41 +1,75 @@
+import type { Metadata, Viewport } from "next";
 import "../styles/globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { Gloria_Hallelujah, Inter_Tight } from "next/font/google";
-import { Space_Mono, DM_Sans } from 'next/font/google'
+import { Cormorant_Garamond, Playfair_Display, Inter, Space_Mono } from "next/font/google";
 
-const spaceMono = Space_Mono({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  variable: '--font-mono',
-})
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-})
-
-const gloria = Gloria_Hallelujah({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-gloria",
+  weight: ["300", "400", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
 });
 
-const inter = Inter_Tight({
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
-export const metadata = {
-  title: "Vedant Singh",
-  description: "Systems | Robotics | AI",
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0A0A0A",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata: Metadata = {
+  metadataBase: new URL("https://vedantsinggh.github.io"),
+  title: "vedantsinggh",
+  description:
+    "Cinematic engineering portfolio of Vedant Singh. Robotics, Autonomous Systems, High-Performance Software, Perception & AI.",
+  keywords: [
+    "Vedant Singh",
+    "Robotics",
+    "Autonomous Systems",
+    "UGV-DTU",
+    "Software Engineering",
+    "Perception",
+    "AI Systems",
+  ],
+  authors: [{ name: "Vedant Singh" }],
+  openGraph: {
+    title: "VEDANT SINGH — Engineering & Systems Portfolio",
+    description: "I don't just build things. I build things that matter.",
+    type: "website",
+    url: "https://vedantsinggh.github.io",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-	<html className={`${spaceMono.variable} ${dmSans.variable}`}>
-		<body className={`${gloria.variable} ${inter.variable}`}>
-        <main className="max-w-5xl mx-auto px-6 py-10">{children}</main>
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${playfair.variable} ${inter.variable} ${spaceMono.variable}`}
+    >
+      <body className="bg-[#FFFFFF] text-[#0A0A0A] antialiased selection:bg-[#E10600] selection:text-[#FFFFFF] overflow-x-hidden">
+        {children}
       </body>
     </html>
   );
